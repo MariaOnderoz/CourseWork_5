@@ -1,5 +1,6 @@
-from db_manager import DBManager
-from utils import create_database, create_tables, save_data_to_database
+from src.utils import create_database, create_tables, save_data_to_database
+from src.db_manager import DBManager
+
 
 def user_interaction():
 
@@ -7,7 +8,7 @@ def user_interaction():
     dbm = DBManager()
     create_database('db_name')
     create_tables('db_name')
-    insert_data_into_tables(list_employers)
+    save_data_to_database(list_employers)
 
     while True:
 
@@ -16,7 +17,7 @@ def user_interaction():
             '2 - список всех вакансий с указанием названия компании, вакансии, зарплаты и ссылки на вакансию\n'
             '3 - средняя зарплата по вакансиям\n'
             '4 - список всех вакансий, у которых зарплата выше средней по всем вакансиям\n'
-            '5 - список вакансий, в названии которых содержится ключевое слово\n'
+            '5 - список вакансий, в названии которых содержатся переданные в метод слова\n'
             'Выход - закончить\n'
         )
 
@@ -33,6 +34,7 @@ def user_interaction():
             print(dbm.get_vacancies_with_keyword(keyword))
         elif new == 'Выход':
             break
+
 
 if __name__ == "__main__":
     user_interaction()

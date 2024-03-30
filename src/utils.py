@@ -1,5 +1,5 @@
 import psycopg2
-from hh_parser import HHParser
+from src.hh_parser import HHParser
 from config import config
 
 
@@ -15,7 +15,7 @@ def create_database(db_name):
 
 
 def create_tables(db_name):
-    conn = psycopg2.connect(dbname="db_name", **config())
+    conn = psycopg2.connect(dbname=db_name, **config())
     with conn:
         with conn.cursor() as cur:
             cur.execute('''CREATE TABLE employers 
@@ -40,7 +40,7 @@ def save_data_to_database(db_name):
     hh = HHParser()
     employers = hh.get_employers()
     vacancies = hh.filter_vacancies()
-    conn = psycopg2.connect(dbname='db_name', **config())
+    conn = psycopg2.connect(dbname=db_name, **config())
     with conn:
         with conn.cursor() as cur:
             for employer in employers:
@@ -53,6 +53,7 @@ def save_data_to_database(db_name):
                                           vacancy["salary_from"], vacancy["salary_to"],
                                           vacancy["url"], vacancy["employer"]))
     conn.close()
+
 
 create_database("db_name")
 create_tables("db_name")

@@ -1,5 +1,6 @@
 import requests
 
+
 class HHParser:
 
     def get_request(self):
@@ -22,7 +23,7 @@ class HHParser:
     def get_vacancies_from_company(self, id):
         params = {
             "per_page": 20,
-            "employer_id":id
+            "employer_id": id
         }
         response = requests.get("http://api.hh.ru/vacancies/", params)
         if response.status_code == 200:

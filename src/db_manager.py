@@ -3,11 +3,12 @@ from config import config
 
 
 class DBManager:
+
     def __init__(self, db_name):
         self.db_name = db_name
 
     def execute_query(self, query) -> list:
-        conn = psycopg2.connect(dbname='db_name', **config())
+        conn = psycopg2.connect(dbname=self.db_name, **config())
         with conn:
             with conn.cursor() as cur:
                 cur.execute(query)
@@ -43,8 +44,9 @@ class DBManager:
             'SELECT * FROM vacancies WHERE salary_from > (select AVG(salary_from) FROM vacancies)')
         return result
 
-    def get_vacancies_with_keyword(self):
+    def get_vacancies_with_keyword(self, keyword):
         """получает список всех вакансий, в названии которых содержатся переданные в метод слова"""
 
-        result = self.execute_query(f'SELECT * FROM vacancies WHERE name LIKE \'%{keywords}%\'')
+        result = self.execute_query(f'SELECT * FROM vacancies WHERE name LIKE \'%{keyword}%\'')
         return result
+
