@@ -54,7 +54,6 @@ def save_data_to_database(db_name):
                                           vacancy["url"], vacancy["employer"]))
     conn.close()
 
-
 create_database("db_name")
 create_tables("db_name")
 save_data_to_database("db_name")
