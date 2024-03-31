@@ -35,5 +35,6 @@ def user_interaction():
         elif new == 'Выход':
             break
 
+
 if __name__ == "__main__":
     user_interaction()
