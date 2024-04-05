@@ -20,8 +20,7 @@ def create_tables(db_name):
         with conn.cursor() as cur:
             cur.execute('''CREATE TABLE employers 
                            (employer_id int PRIMARY KEY,
-                           name VARCHAR(255) UNIQUE NOT NULL,
-                           open_vacancies int
+                           name VARCHAR(255) UNIQUE NOT NULL
                            );
                            ''')
             cur.execute('''CREATE TABLE vacancies
@@ -54,6 +53,3 @@ def save_data_to_database(db_name):
                                           vacancy["url"], vacancy["employer"]))
     conn.close()
 
-create_database("db_name")
-create_tables("db_name")
-save_data_to_database("db_name")

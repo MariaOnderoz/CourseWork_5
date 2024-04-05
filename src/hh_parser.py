@@ -56,6 +56,3 @@ class HHParser:
                 "employer": vacancy["employer"]["id"],
             })
         return filter_data
-
-hh = HHParser()
-print(hh.filter_vacancies())
