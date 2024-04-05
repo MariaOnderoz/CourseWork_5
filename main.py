@@ -4,7 +4,6 @@ from src.db_manager import DBManager
 
 def user_interaction():
 
-    #list_employers = [1942330, 49357, 78638, 2748, 3529, 9498112, 93787326, 2180, 1648566, 1942336]
     dbm = DBManager()
     create_database('db_name')
     create_tables('db_name')
